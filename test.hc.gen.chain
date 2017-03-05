@@ -1,0 +1,21 @@
+hc gen from groupGithubs/group1/blankChain blankChain1
+hc gen from groupGithubs/group1/blankChain blankChain2
+
+Scripts/hc.rewrite.confFile blankChain1 10000 10001
+Scripts/hc.rewrite.confFile blankChain2 10000 10002
+
+hc status
+
+hc gen chain blankChain1
+hc gen chain blankChain2
+
+rm .holochain/blankChain1/chain.dat
+rm .holochain/blankChain2/chain.dat
+
+hc status
+
+cat .holochain/blankChain1/config.toml
+cat .holochain/blankChain2/config.toml
+
+hc serve blankChain1 10001 &
+hc serve blankChain2 10002 &

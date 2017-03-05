@@ -1,0 +1,13 @@
+installedConfig=".holochain/$1/config.toml"
+bootstrapPort="$2"
+serverPort="$3"
+
+echo $installedConfig
+echo $bootstrapPort
+echo sed -i.bak -e s/6283/$serverPort/g $installedConfig
+
+
+cp groupGithubs/config.toml $installedConfig
+sed -i.bak -e s/6283/$serverPort/g "$installedConfig"
+sed -i.bak -e s/\"\"/\"localhost:$bootstrapPort\"/g "$installedConfig"
+
