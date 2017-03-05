@@ -1,1 +1,1 @@
-kill `lsof -n -i :10000 | grep LISTEN | awk  '{print $2}'`
+kill `lsof -n -i :$1 | grep LISTEN | awk  '{print $2}'`

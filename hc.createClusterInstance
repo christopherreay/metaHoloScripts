@@ -1,0 +1,29 @@
+groupName=$1
+chainName=$2
+instanceNumber=$3
+bootstrapPort=$4
+internalPort=$5
+externalPort=$6
+
+chainID=$groupName$chainName$instanceNumber
+groupDir=groupGithubs/$groupName
+
+
+
+echo "change this to clone when updated by eric"
+hc clone groupGithubs/$groupName/$chainName $chainID
+
+Scripts/hc.rewrite.confFile $chainID $bootstrapPort $internalPort
+
+hc status
+
+echo "this is going to change to something as well"
+hc gen chain $chainID
+
+hc status
+
+echo "remove when debuging finished"
+cat .holochain/$chainID/config.toml
+
+echo "$(date +%s) server restarted"
+hc serve $chainID $externalPort 2>&1 | tee -a $groupDir/logs/$chainName.log >> $groupDir/logs/allServers.log &
