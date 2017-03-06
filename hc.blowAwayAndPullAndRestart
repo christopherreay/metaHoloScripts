@@ -14,20 +14,17 @@ cd
 echo "killing bs on port $bsPort"
 /home/holochain/Scripts/killProcessByPort $bsPort
 
-typeset -i i END
-let END=$endPort i=$startPort
+declare -i i
+declare -i END
+END=$endPort 
+i=$startPort
 while ((i<=END)); do
     echo "killing hc by port $i"
     
     /home/holochain/Scripts/killProcessByPort $i    
     
-    let i++
-    let i++
+    i=$((i+2))
 done
-
-backupChainTimeStamp=$(date +%s)
-mkdir -p /home/holochain/oldData/$groupName/$chainName/$backupChainTimeStamp
-mv /home/holochain/.holochain/$groupName$chainName* /home/holochain/oldData/$groupName/$chainName/$backupChainTimeStamp -r
 
 cd /home/holochain/groupGithubs/$groupName/
 git pull origin master
@@ -35,15 +32,18 @@ cd
 
 bs --port=$bsPort &
 
-typeset -i i END seqenceNumber
-let END=$endPort i=$startPort seqenceNumber=1
+declare -i i 
+declare -i END 
+declare -i seqenceNumber
+END=$endPort 
+i=$startPort
+seqenceNumber=1
 while ((i<=END)); do
     echo "spinningUp hc by port $i"
     
     /home/holochain/Scripts/hc.createClusterInstance $groupName $chainName $seqenceNumber $bsPort $i $(( $i +1 ))
 
-    let i++
-    let i++
-    let seqenceNumber++
+    i=$((i+2))
+    seqenceNumber=$((sequenceNumber+1))
 done
 
