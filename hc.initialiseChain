@@ -6,6 +6,8 @@ bsPort=$3
 startPort=$4
 endPort=$5
 
+groupLog="/home/holochain/groupLogs/$groupName"
+
 echo $groupName
 echo $chainName
 echo $bsPort
@@ -14,12 +16,12 @@ echo $endPort
 
 cd 
 
-mkdir -p groupGithubs/$groupName
-cd groupGithubs/$groupName/
+mkdir -p /home/holochain/groupGithubs/$groupName
+cd /home/holochain/groupGithubs/$groupName/
 git pull origin master
 cd
 
-bs --port=$bsPort &
+bs --port=$bsPort  &
 
 typeset -i i END seqenceNumber
 let END=$endPort i=$startPort seqenceNumber=1

@@ -1,0 +1,2 @@
+cd /home/holochain
+screen -dRR -dRR  visualPress

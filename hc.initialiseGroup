@@ -1,10 +1,12 @@
+#!/bin/bash
+
 githubURL=$1
 groupName=$2
 
 cd
 
-mkdir -p groupGithubs/$groupName/
-cd groupGithubs/$groupName/
+mkdir -p /home/holochain/groupGithubs/$groupName/
+cd /home/holochain/groupGithubs/$groupName/
 git clone $githubURL .
 
 cd

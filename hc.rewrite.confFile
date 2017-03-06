@@ -1,4 +1,6 @@
-installedConfig=".holochain/$1/config.toml"
+#!/bin/bash
+
+installedConfig="/home/holochain/.holochain/$1/config.toml"
 bootstrapPort="$2"
 serverPort="$3"
 

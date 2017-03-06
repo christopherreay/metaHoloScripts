@@ -6,8 +6,8 @@ endPort=$5
 
 cd 
 
-mkdir -p groupGithubs/$groupName
-cd groupGithubs/$groupName/
+mkdir -p /home/holochain/groupGithubs/$groupName
+cd /home/holochain/groupGithubs/$groupName/
 git pull origin master
 cd
 

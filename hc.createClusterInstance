@@ -8,13 +8,13 @@ internalPort=$5
 externalPort=$6
 
 chainID=$groupName$chainName$instanceNumber
-groupDir=groupGithubs/$groupName
+groupLog="/home/holochain/groupLogs/$groupName"
 
 
 echo "cloning $chainName to $chainID"
-hc clone groupGithubs/$groupName/$chainName $chainID
+hc clone /home/holochain/groupGithubs/$groupName/$chainName $chainID
 
-Scripts/hc.rewrite.confFile $chainID $bootstrapPort $internalPort
+/home/holochain/Scripts/hc.rewrite.confFile $chainID $bootstrapPort $internalPort
 
 hc status
 
@@ -24,13 +24,11 @@ hc gen chain $chainID
 hc status
 
 echo "rewritten chain template"
-cat .holochain/$chainID/config.toml
+cat /home/holochain/.holochain/$chainID/config.toml
 
 echo "$(date +%s) server restarted"
 
 mkdir -p $groupDir/logs
-touch $groupDir/logs/$chainName.log
-touch $groupDir/logs/allServers.log
-hc serve $chainID $externalPort & 
-
-#2>&1 | tee -a $groupDir/logs/$chainName.log >> $groupDir/logs/allServers.log &
+touch $groupLog/$chainName.log
+touch $groupLog/allServers.log
+hc serve $chainID $externalPort  &
