@@ -9,20 +9,19 @@ chainID=$groupName$chainName$instanceNumber
 groupDir=groupGithubs/$groupName
 
 
-
-echo "change this to clone when updated by eric"
+echo "cloning $chainName to $chainID"
 hc clone groupGithubs/$groupName/$chainName $chainID
 
 Scripts/hc.rewrite.confFile $chainID $bootstrapPort $internalPort
 
 hc status
 
-echo "this is going to change to something as well"
+echo "genesis of $chainID"
 hc gen chain $chainID
 
 hc status
 
-echo "remove when debuging finished"
+echo "rewritten chain template"
 cat .holochain/$chainID/config.toml
 
 echo "$(date +%s) server restarted"

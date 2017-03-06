@@ -1,0 +1,10 @@
+githubURL=$1
+groupName=$2
+
+cd
+
+mkdir -p groupGithubs/$groupName/
+cd groupGithubs/$groupName/
+git clone $githubURL .
+
+cd

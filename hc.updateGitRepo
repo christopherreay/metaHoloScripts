@@ -1,0 +1,9 @@
+groupName=$1
+
+cd
+
+mkdir -p groupGithubs/$groupName
+cd groupGithubs/$groupName/
+git pull origin master
+
+cd
