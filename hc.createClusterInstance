@@ -28,9 +28,7 @@ cat /home/holochain/.holochain/$chainID/config.toml
 
 echo "$(date +%s) server restarted"
 
-mkdir -p $groupDir/logs
+mkdir -p $groupLog
 touch $groupLog/$chainName.log
 touch $groupLog/allServers.log
 hc serve $chainID $externalPort  &
-
-sleep 2
