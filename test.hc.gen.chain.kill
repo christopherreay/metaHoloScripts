@@ -15,4 +15,4 @@ Scripts/killProcessByPort 10022
 rm -rf ~/.holochain/testrun*
 rm -rf groupGithubs/testrun*
 
-rm tmp/testrun
+rm groupLogs/testrun* -rf

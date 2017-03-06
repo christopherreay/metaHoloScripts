@@ -32,3 +32,5 @@ mkdir -p $groupDir/logs
 touch $groupLog/$chainName.log
 touch $groupLog/allServers.log
 hc serve $chainID $externalPort  &
+
+sleep 2
