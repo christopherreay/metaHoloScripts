@@ -1,3 +1,5 @@
+#!/bin/bash
+
 groupName=$1
 chainName=$2
 instanceNumber=$3
@@ -25,4 +27,10 @@ echo "rewritten chain template"
 cat .holochain/$chainID/config.toml
 
 echo "$(date +%s) server restarted"
-hc serve $chainID $externalPort 2>&1 | tee -a $groupDir/logs/$chainName.log >> $groupDir/logs/allServers.log &
+
+mkdir -p $groupDir/logs
+touch $groupDir/logs/$chainName.log
+touch $groupDir/logs/allServers.log
+hc serve $chainID $externalPort & 
+
+#2>&1 | tee -a $groupDir/logs/$chainName.log >> $groupDir/logs/allServers.log &

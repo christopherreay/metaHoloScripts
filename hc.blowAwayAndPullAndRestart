@@ -1,3 +1,5 @@
+#/bin/bash
+
 groupName=$1
 chainName=$2
 sequenceNumber=$3
@@ -29,14 +31,14 @@ cd groupGithubs/$groupName/
 git pull origin master
 cd
 
-bs --port=$bsPort
+bs --port=$bsPort &
 
 typeset -i i END seqenceNumber
 let END=$endPort i=$startPort seqenceNumber=1
 while ((i<=END)); do
     echo "spinningUp hc by port $i"
     
-    Scripts/hc.createClusterInstance $groupName $chainName $seqenceNumber $bsPort $i (( $i +1 ))
+    Scripts/hc.createClusterInstance $groupName $chainName $seqenceNumber $bsPort $i $(( $i +1 ))
 
     let i++
     let i++
