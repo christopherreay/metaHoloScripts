@@ -11,6 +11,13 @@ Scripts/killProcessByPort 10016
 Scripts/killProcessByPort 10018
 Scripts/killProcessByPort 10020
 Scripts/killProcessByPort 10022
+Scripts/killProcessByPort 10023
+Scripts/killProcessByPort 10024
+Scripts/killProcessByPort 10026
+Scripts/killProcessByPort 10028
+Scripts/killProcessByPort 10030
+Scripts/killProcessByPort 10032
+Scripts/killProcessByPort 10034
 
 rm -rf ~/.holochain/testrun*
 rm -rf groupGithubs/testrun*

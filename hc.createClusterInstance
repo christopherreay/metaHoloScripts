@@ -31,4 +31,6 @@ echo "$(date +%s) server restarted"
 mkdir -p $groupLog
 touch $groupLog/$chainName.log
 touch $groupLog/allServers.log
+
+echo "hc serve $chainID $externalPort  &"
 hc serve $chainID $externalPort  &
