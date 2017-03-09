@@ -30,7 +30,7 @@ cd /home/holochain/groupGithubs/$groupName/
 git pull origin master
 cd
 
-bs --port=$bsPort &
+bs --port=$bsPort 2>&1 | tee -a $groupLog/$chainName/bs.log  &
 
 declare -i i 
 declare -i END 

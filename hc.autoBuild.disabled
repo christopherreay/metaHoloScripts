@@ -1,0 +1,15 @@
+cd /home/holochain/go/src/github.com/metacurrency/holochain
+
+hcLocal="/home/holochain/hcLocal"
+date=`date`
+
+! git pull | grep  "Already up-to-date." || echo "$date no changes" && exit 1
+
+
+#git pull 2>&1 | tee -a /home/holochain/hcLocal/autoBuild.log > /dev/null
+echo make hc
+make  2>&1 | tee -a /home/holochain/hcLocal/autoBuild.log > /dev/null
+echo make bs
+make bs  2>&1 | tee -a /home/holochain/hcLocal/autoBuild.log > /dev/null
+
+git diff --color-words --no-index  HEAD^ | ~/Scripts/ansi2html.sh >> autoBuild.log

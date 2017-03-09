@@ -21,7 +21,21 @@ cd /home/holochain/groupGithubs/$groupName/
 git pull origin master
 cd
 
-bs --port=$bsPort  &
+touch $groupLog/$chainName.bs.log
+echo "bs --port=$bsPort  2>&1 | tee -a $groupLog/$chainName/bs.log > /dev/null"
+bs --port=$bsPort  2>&1 | tee -a $groupLog/$chainName.bs.log > /dev/null &
+
+
+instancePath=/home/holochain/groupIdents/$groupName/$chainName
+echo "hc -path $instancePath init $groupName@bootstrap.holochain.net"
+hc -path $instancePath init "$groupName@bootstrap.holochain.net"
+echo "hc -path $instancePath clone /home/holochain/groupGithubs/$groupName/$chainName $chainName"
+hc -path $instancePath clone /home/holochain/groupGithubs/$groupName/$chainName $chainName
+echo "hc -path $instancePath gen chain $chainName"
+hc -path $instancePath gen chain $chainName
+echo "hc -path $instancePath reset $chainName"
+hc -path $instancePath reset $chainName
+
 
 declare -i i 
 declare -i END 
