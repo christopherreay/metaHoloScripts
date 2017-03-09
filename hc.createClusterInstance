@@ -17,20 +17,21 @@ groupInstance=/home/holochain/groupIdents/$groupName/$chainName
 
 echo "hc -path $instancePath init $groupName$instanceID@bootstrap.holochain.net"
 hc -path $instancePath init "$groupName$instanceID@bootstrap.holochain.net"
-echo "hc -path $instancePath join $groupInstance/$chainName $chainID"
-hc -path $instancePath join $groupInstance/$chainName $chainID
+echo "hc -path $instancePath clone $groupInstance/$chainName $chainID"
+hc -path $instancePath clone $groupInstance/$chainName $chainID
 
+echo "sed instance rewrites"
 sed -i.bak -e s/6283/$internalPort/g "$instancePath/$chainID/config.json"
 sed -i.bak -e s/10000/\"$bootstrapPort\"/g "$instancePath/$chainID/config.json"
 
 #/home/holochain/Scripts/hc.rewrite.confFile $chainID $bootstrapPort $internalPort
 
-hc status
+hc -path $instancePath status
 
 echo "genesis of $chainID"
 hc -path $instancePath gen chain $chainID
 
-hc status
+hc -path $instancePath status
 
 echo "rewritten chain template"
 cat /home/holochain/.holochain/$chainID/config.json
